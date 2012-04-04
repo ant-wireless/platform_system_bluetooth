@@ -210,16 +210,7 @@ int hci_enable()
         LOGE("%s: Timeout waiting for HCI device to come up", __FUNCTION__);
         goto out;
     }
-
-    LOGI("Starting bluetoothd deamon");
-    if (property_set("ctl.start", "bluetoothd") < 0) {
-        LOGE("Failed to start bluetoothd");
-        set_bluetooth_power(0);
-        goto out;
-    }
-
     ret = 0;
-
 out:
     if (hci_sock >= 0) close(hci_sock);
     return ret;
